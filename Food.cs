@@ -1,11 +1,21 @@
-﻿namespace Snake
+﻿using System.Security.Cryptography;
+
+namespace Snake
 {
     internal class Food
     {
+        public void PlaceAtRandomPoint()
+        {
+            // todo: check case when it spawns inside snake
+
+            Point.PosX = RandomNumberGenerator.GetInt32(0, Map.Width - 1);
+            Point.PosY = RandomNumberGenerator.GetInt32(0, Map.Width - 1);
+        }
+
         public void Render()
         {
-            Console.CursorLeft = PosX * 2;
-            Console.CursorTop = PosY + 1;
+            Console.CursorLeft = Point.PosX * 2;
+            Console.CursorTop = Point.PosY + 1;
 
             var oldColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -13,8 +23,6 @@
             Console.ForegroundColor = oldColor;
         }
 
-        public int PosX { get; set; }
-        public int PosY { get; set; }
-        public bool IsAvailable { get; set; }
+        public Point Point { get; set; } = new Point() { PosX = 0, PosY = 0 };
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Snake
+﻿namespace Snake
 {
     internal class Program
     {
